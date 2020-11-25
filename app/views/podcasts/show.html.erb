@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <div class="row">   
+      <div class="col-md-12 text-center">
+        <h1><%= @podcast.title%></h1>
+        <p><%= @podcast.description%></p>
+      </div>
+
+      <div class="col-md-12 text-center">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <% unless @podcast.itune.blank? %>
+            <%= link_to "Itune", @podcast.itune, target: "_blank", class: "btn btn-primary btn-sm"%>
+          <% end %>
+          <% unless @podcast.pobay.blank? %>
+            <%= link_to "Pobay", @podcast.pobay, target: "_blank", class: "btn btn-primary btn-sm"%>
+          <% end %> 
+        </div>
+        <hr/>
+      </div>  
+
+      <div class="col-md-4 offset-4">
+        <h3>Episods list </h3>
+        <br/>
+        <div class="list-group">
+        <% @episodes.each do |episode| %>      
+            <%= link_to(podcast_episode_path(@podcast, episode), class: "list-group-item list-group-item-action flex-column align-items-start") do  %>    
+
+              <div class="d-flex w-100 justify-content-between">
+                <img src="" alt="">
+                <h5 class="mb-1"><%= episode.title %></h5>
+              </div>
+              <p class="mb-1"><%= truncate(episode.description, length: 100 ) %></p>
+             <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

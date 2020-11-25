@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PodcastFm</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- nav-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <%= link_to "Podcast_FM", root_path, class: "navbar-brand" %>
+        
+        <div class="form-inline my-2 my-lg-0">
+          <ul class="navbar-nav">
+            
+            <% unless podcast_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Explore", podcasts_path, class: "nav-link" %>
+            
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign In", new_podcast_session_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Create a Podcast", new_podcast_registration_path, class: "nav-link" %>
+              </li>
+
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Dashboard", root_path,  class: "nav-link"%>
+              </li>
+              <li class="nav-item ">
+                <%= link_to "Explore", podcasts_path, class: "nav-link" %>
+
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign Out", destroy_podcast_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <% if alert %>
+        <p class="alert"><%= alert %></p>
+        <% elsif notice %>
+        <p class="notice"><%= notice %></p>
+        <% end %>
+      </div>
+    </div>
+      <%= yield %>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

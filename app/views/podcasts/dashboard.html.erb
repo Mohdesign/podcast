@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <p class="nav-link " href="#">Episodes</p>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Episode", new_podcast_episode_path(@podcast), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Account Settings", edit_podcast_registration_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "View Podcast", podcast_path(current_podcast), class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6 offset-3 mt-5">
+      <h2>Episodes</h2>
+      <hr/>
+      <div class="list-group">
+        <% @episodes.each do |episode| %>      
+            <%= link_to(podcast_episode_path(@podcast, episode), class: "list-group-item list-group-item-action flex-column align-items-start") do  %>    
+
+              <div class="d-flex w-100 justify-content-between">
+                <img src="" alt="">
+                <h5 class="mb-1"><%= episode.title %></h5>
+              </div>
+              <p class="mb-1"><%= truncate(episode.description, length: 100) %></p>
+              <br/>
+              <small>
+                <%= link_to "Edit", edit_podcast_episode_path(@podcast, episode), class: "badge badge-danger" %>
+              </small>
+              <small>
+                <%= link_to "Delete", podcast_episode_path(@podcast, episode), method: :delete, data: {confirm: "Are you sure?"}, class: "badge badge-warning"  %>
+              </small>
+             <% end %>
+          <% end %>
+        </div>
+    </div>
+
+
+  </div>
+</div>
+

@@ -1,0 +1,10 @@
+.background{
+	background-image: url("explor.jpg");
+    background-size: cover;
+    height: 300px;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+}

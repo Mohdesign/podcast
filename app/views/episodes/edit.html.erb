@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+  	<div class="col-md-12">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+           <%= link_to "Episodes", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "New Episode", new_podcast_episode_path(@podcast), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Account Settings", edit_podcast_registration_path, class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "View Podcast", podcast_path(current_podcast), class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6 offset-3 mt-5">
+		<h2>Edit <%= @episode.title %></h2>
+			<hr/>
+			<%= render "form" %>
+		</div>
+	</div>
+</div>
